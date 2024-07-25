@@ -1,0 +1,15 @@
+.castList {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.castItem {
+    display: flex;
+    flex-direction: column;
+
+    img {
+        max-width: 150px;
+        height: auto;
+    }
+}

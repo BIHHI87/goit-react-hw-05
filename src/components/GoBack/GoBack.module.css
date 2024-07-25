@@ -1,0 +1,26 @@
+.goBack {
+    display: flex;
+    align-items: center;
+    background-color: #eeeeee;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 10px;
+
+    &:hover {
+        background-color: #d4d4d4;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        background-color: #95aac0;
+    }
+
+    svg {
+        margin-right: 8px;
+    }
+}

@@ -1,0 +1,9 @@
+a:hover {
+    color: rgb(255, 0, 81);
+
+}
+
+a:focus {
+    color: rgb(255, 0, 81);
+    text-decoration: underline;
+}
