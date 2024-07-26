@@ -16,7 +16,20 @@ const MoviesPage = () => {
     const query = searchParams.get('query');
     if (query) {
       setSearchValue(query);
-      searchMovies(query);
+      (async () => {
+        setLoading(true);
+        setError(null);
+        try {
+          const datas = await fetchMoviesByQuery(query);
+          setMovies(datas.results);
+        } catch (error) {
+          console.error('Error fetching movies: ', error);
+          setError('Error fetching movies.');
+          setMovies([]);
+        } finally {
+          setLoading(false);
+        }
+      })();
     }
   }, [searchParams]);
 
@@ -29,22 +42,6 @@ const MoviesPage = () => {
       return;
     }
     setSearchParams({ query: trimmedSearchValue });
-  };
-
-  const searchMovies = async (query) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const datas = await fetchMoviesByQuery(query);
-      setMovies(datas.results);
-    } catch (error) {
-      console.error('Error fetching movies: ', error);
-      setError('Error fetching movies.');
-      setMovies([]);
-    } finally {
-      setLoading(false);
-      setSearchValue('');
-    }
   };
 
   return (
@@ -60,7 +57,7 @@ const MoviesPage = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>We does not have any trending movies for this query.</p>}
+      {error && <p>{error}</p>}
       {!loading && !error && <MovieList movies={movies} />}
     </div>
   );
